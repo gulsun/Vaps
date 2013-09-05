@@ -50,9 +50,10 @@
 			<table>
 				<tr>
 					<td>아이디:</td>
-					<td><input class="intxt" type="text" name="id" />
-					<input type="button" name="confirm_id" value="중복확인" 
-								onclick="openConfirmId(this.form)" />
+					<td><input class="intxt" type="text" name="id" /></td>
+					<td>
+					<input type="button" name="confirm_id" value="아이디 확인" 
+								onclick="openConfirmId(this.form)" class="buttonCh"/>
 					</td>
 				</tr>
 				<tr>
