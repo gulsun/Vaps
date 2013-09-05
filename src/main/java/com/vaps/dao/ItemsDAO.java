@@ -16,6 +16,7 @@ public class ItemsDAO extends SqlSessionDaoSupport implements ItemsInterface {
 	Connection con=null;
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
+	
 	@Override
 	public List<Items> getItemsList() {
 		// TODO Auto-generated method stub

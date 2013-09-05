@@ -13,6 +13,7 @@ public class ItemsListAction {
 	}
 	
 	public List<Items> getItemsList(){
+		//java.lang.NullPointerException
 		return dao.getItemsList();
 	}
 	

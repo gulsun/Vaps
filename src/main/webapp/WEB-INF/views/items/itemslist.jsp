@@ -15,17 +15,25 @@
 	<%@include file="/WEB-INF/views/top/menu.jsp"%>
 	<br />
 	<div style="padding: 1px 20px 30px 60px;">
-		<h1> 파일 업로드 및 상품 리스트 구현</h1>
-		<form method="post" enctype="multipart/form-data">
-
-		<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
-		 
-		<div class="file_input_div">
-		<input type="button" value="파일" class="button" />
-		<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
-		</div>
-			
-		</form>
+		<table id="two_table">
+			<tr bgcolor="cyan" align="center" height="35">
+				<td width="100">카테고리</td>
+				<td width="200">상품이름</td>
+				<td width="150">가격</td>
+			</tr>
+			<c:forEach var="ilist" items="${ilist}">
+				<tr height="25">
+					<td width="100" align="center">${ilist.i_category}</td>
+					<td width="200" align="center">${ilist.i_name}</td>
+					<td width="150" align="center">${ilist.i_price}</td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan=4>
+					게시물 페이징 자리...고민중
+				</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

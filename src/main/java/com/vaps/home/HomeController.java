@@ -160,11 +160,13 @@ public class HomeController {
 		String result = "home";
 
 		try {
-			//import com.vaps.action.ItemsListAction; 임포드 되었는데??
-			ItemsListAction il = new ItemsListAction(itemsDAO);
+			ItemsListAction item = new ItemsListAction(itemsDAO);
 			
-			model.addAttribute("ilist", il.getItemsList());
-			result = "items/itemslist";
+			if (session != null && session.getAttribute("id") != "") {
+				model.addAttribute("ilist", item.getItemsList());
+				result = "items/itemslist";
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
