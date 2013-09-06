@@ -43,6 +43,8 @@ public class HomeController {
 	@Resource(name = "membersDao")
 	// @Autowired 도 왼쪽과 같은 자동주입이나 권장하지 않는 방법이다. 가능하면 @Resource를 쓰라
 	private MembersDAO membersDao;
+	
+	@Resource(name = "itemsDao")
 	private ItemsDAO itemsDAO;
 
 	// 암호화, 자동주입 등록(mybatis-context.xml에서)

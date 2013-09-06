@@ -2,13 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemsInterface">
 	<resultMap type="items" id="items" />
-	<resultMap type="al" id="al" />
-	<resultMap type="Map" id="Map" />
-
 
 	<select id="getItemsList" resultType="items">
-		<![CDATA[
-			SELECT I_NAME, I_CATEGORY, I_PRICE FROM ITEMS;
-		]]>
+			SELECT * FROM ITEMS
 	</select>
 </mapper>
