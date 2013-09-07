@@ -1,6 +1,8 @@
 package com.vaps.action;
 
 import java.util.List;
+
+import com.vaps.bean.BoardList;
 import com.vaps.bean.Items;
 import com.vaps.dao.ItemsDAO;
 
@@ -15,6 +17,10 @@ public class ItemsListAction {
 	public List<Items> getItemsList(){
 		//java.lang.NullPointerException
 		return dao.getItemsList();
+	}
+	public int setItems(Items item) {
+		// 상품등록
+		return dao.setItems(item);
 	}
 	
 }

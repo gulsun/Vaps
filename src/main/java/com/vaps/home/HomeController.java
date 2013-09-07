@@ -12,15 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.jdbc.support.lob.LobCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vaps.action.BoardListAction;
 import com.vaps.action.ItemsListAction;
 import com.vaps.action.MembersAction;
 import com.vaps.bean.BoardList;
+import com.vaps.bean.Items;
 import com.vaps.bean.Members;
 import com.vaps.dao.MembersDAO;
 import com.vaps.dao.ItemsDAO;
@@ -182,18 +185,41 @@ public class HomeController {
 		return "items/itemsUpload";
 	}
 	@RequestMapping(value = "/itemsUpload")
-	public void itemsUpload(HttpServletRequest req, Model model) throws Exception {
+	public void itemsUpload(MultipartFile picture, HttpServletRequest req, HttpServletResponse res){
 		// 상품 등록 처리
-//			result = "items/itemslist";
-		try {
-			req.setCharacterEncoding("UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		LobCreator lobCreator;
+			try {
+				req.setCharacterEncoding("UTF-8");
+				PrintWriter out = res.getWriter();
+				if (session != null && session.getAttribute("id") != "") {
+					ItemsListAction item = new ItemsListAction(itemsDAO);
+					Items items = new Items();
+					items.setI_name(req.getParameter("i_name"));
+					items.setI_category(req.getParameter("i_category"));
+					items.setI_price(Integer.parseInt(req.getParameter("i_price")));
+						//lobCreator.setBlobAsBytes(ps, ++index, item.getPicture().getBytes());
+					//items.setI_pic(Integer.parseInt(req.getParameter("i_pic")));
+					items.setI_pic(lobCreator.setBlobAsBytes(null, 0, Integer.parseInt(req.getParameter("i_pic"));
+					items.setI_description(req.getParameter("i_name")); //임시로 나중에 고쳐라
+					//재고수량 추가해라
+					if (item.setItems(items) == 1) {
+						out.println("<script>");
+						out.println("location.href='/itemslist'");
+						out.println("</script>");
+					}
+				}else {
+					out.println("<script>");
+					out.println("alert('상품등록 실패')");
+					out.println("location.href='/itemslist'");
+					out.println("</script>");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
-	
-//--------------------------------------------------------------
+
+	//--------------------------------------------------------------
 // 게시판 관리
 	// 게시판(질답용도)
 	@RequestMapping(value = "/board")

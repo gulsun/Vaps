@@ -1,5 +1,6 @@
 package com.vaps.dao;
 
+import java.io.InputStream;
 import java.util.List;
 import com.vaps.bean.Items;
 
@@ -11,6 +12,6 @@ public interface ItemsInterface {
 	public int delItems(int num);
 	public Items getItemsModi(int num); //상품 수정
 	public int setItemsModi(Items item); //수정한 상품 저장
-
+	InputStream getPicture(Integer itemId);
 
 }
