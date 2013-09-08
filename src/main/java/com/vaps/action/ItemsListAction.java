@@ -2,7 +2,6 @@ package com.vaps.action;
 
 import java.util.List;
 
-import com.vaps.bean.BoardList;
 import com.vaps.bean.Items;
 import com.vaps.dao.ItemsDAO;
 

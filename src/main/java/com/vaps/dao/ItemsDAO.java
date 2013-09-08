@@ -1,15 +1,7 @@
 package com.vaps.dao;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.lob.LobHandler;
@@ -17,11 +9,6 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import com.vaps.bean.Items;
 
 public class ItemsDAO extends SqlSessionDaoSupport implements ItemsInterface {
-	private static final Statement ConnUtil = null;
-	DataSource ds;
-	Connection con=null;
-	PreparedStatement pstmt=null;
-	ResultSet rs=null;
 	
 	@Autowired
 	private LobHandler lobHandler;

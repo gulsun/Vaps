@@ -2,6 +2,7 @@ package com.vaps.home;
 
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,6 @@ import com.vaps.bean.Members;
 import com.vaps.dao.MembersDAO;
 import com.vaps.dao.ItemsDAO;
 import com.vaps.userclass.EncryptionEncoding;
-import com.vaps.action.Action;
 import com.vaps.action.ActionForward;
 import com.vaps.action.MemberIDCheckAction;
 
@@ -184,38 +184,42 @@ public class HomeController {
 		// 상품 등록 폼 이동
 		return "items/itemsUpload";
 	}
+	/*
+	 * 파일 업로드 기능 미구현
+	 * 현재는 업로드 기능 빼고 나머지 insert 됨
+	 * 또 문제는 한글이 깨져서 저장된다. 게시판은 한글 잘된다...
+	 * 인코딩 utf-8으로 맞췄는데 왜 안되지?
+	 */
 	@RequestMapping(value = "/itemsUpload")
-	public void itemsUpload(MultipartFile picture, HttpServletRequest req, HttpServletResponse res){
-		// 상품 등록 처리
-		LobCreator lobCreator;
-			try {
-				req.setCharacterEncoding("UTF-8");
+	public void itemsUpload(HttpServletRequest request, Model model, HttpServletResponse res) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			res.setContentType("text/html;charset=UTF-8");
+
+			ItemsListAction item = new ItemsListAction(itemsDAO);
+			Items items = new Items();
+			
+			if (session != null && session.getAttribute("id") != "") {
+				items.setI_name(request.getParameter("i_name"));
+				items.setI_category(request.getParameter("i_category"));
+				items.setI_price(Integer.parseInt(request.getParameter("i_price")));
+//				items.setI_description(request.getParameter("i_name")); // 임시로
+				
 				PrintWriter out = res.getWriter();
-				if (session != null && session.getAttribute("id") != "") {
-					ItemsListAction item = new ItemsListAction(itemsDAO);
-					Items items = new Items();
-					items.setI_name(req.getParameter("i_name"));
-					items.setI_category(req.getParameter("i_category"));
-					items.setI_price(Integer.parseInt(req.getParameter("i_price")));
-						//lobCreator.setBlobAsBytes(ps, ++index, item.getPicture().getBytes());
-					//items.setI_pic(Integer.parseInt(req.getParameter("i_pic")));
-					items.setI_pic(lobCreator.setBlobAsBytes(null, 0, Integer.parseInt(req.getParameter("i_pic"));
-					items.setI_description(req.getParameter("i_name")); //임시로 나중에 고쳐라
-					//재고수량 추가해라
-					if (item.setItems(items) == 1) {
-						out.println("<script>");
-						out.println("location.href='/itemslist'");
-						out.println("</script>");
-					}
-				}else {
+				if (item.setItems(items) == 1) {
+					out.println("<script>");
+					out.println("location.href='/itemslist'");
+					out.println("</script>");
+				} else {
 					out.println("<script>");
 					out.println("alert('상품등록 실패')");
 					out.println("location.href='/itemslist'");
 					out.println("</script>");
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 

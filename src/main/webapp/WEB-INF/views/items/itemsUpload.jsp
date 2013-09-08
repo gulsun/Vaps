@@ -31,8 +31,7 @@
 	<br />
 	<div style="padding: 1px 20px 30px 60px;">
 		<h1> 파일 업로드</h1>
-		<form action="/itemsUpload" method="post" enctype="multipart/form-data" onsubmit="return formCheck();">
-
+		<form action="/itemsUpload" method="post" enctype="multipart/form-data;charset=UTF-8">
 			<table>
 				<tr>
 					<td>상품이름</td>
@@ -64,6 +63,8 @@
 				<tr>
 					<td colspan="2" align="right">
 						<input class="button" type="submit" value="등록" />
+						
+						<input type="file" name="picture" />
 						<a href="/itemslist" class="button">취소</a>
 					</td>
 				</tr>
