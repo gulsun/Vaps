@@ -203,6 +203,17 @@ public class HomeController {
 				items.setI_name(request.getParameter("i_name"));
 				items.setI_category(request.getParameter("i_category"));
 				items.setI_price(Integer.parseInt(request.getParameter("i_price")));
+				
+				//
+				int length = request.getParameter("i_pic").length();
+				byte[] blob = request.getParameter("i_pic").getBytes();
+		        final byte[] newBytes = new byte[length];
+		        for (int i = 0; i < length; i++) {
+		          Byte b = blob[i];
+		          newBytes[i] = b;
+		        }
+		        items.setI_pic(newBytes);
+				System.out.println(newBytes);
 //				items.setI_description(request.getParameter("i_name")); // 임시로
 				
 				PrintWriter out = res.getWriter();
@@ -220,6 +231,23 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@RequestMapping(value = "/itemsContentsForm")
+	public String itemsContentsForm(HttpServletRequest request, Model model) {
+		// 상품 상세 보기
+		session = request.getSession();
+		ItemsListAction item = new ItemsListAction(itemsDAO);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			if (session != null && session.getAttribute("id") != "") {
+				String i_name = request.getParameter("str");
+				model.addAttribute("ilist", item.getContents(i_name)); // 원글 보기
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "items/itemsContent";
 	}
 	
 

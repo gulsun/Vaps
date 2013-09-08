@@ -63,8 +63,6 @@
 				<tr>
 					<td colspan="2" align="right">
 						<input class="button" type="submit" value="등록" />
-						
-						<input type="file" name="picture" />
 						<a href="/itemslist" class="button">취소</a>
 					</td>
 				</tr>

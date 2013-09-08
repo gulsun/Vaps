@@ -24,14 +24,14 @@ public class ItemsDAO extends SqlSessionDaoSupport implements ItemsInterface {
 		return getSqlSession().insert("ItemsInterface.setItems", item);
 	}
 	@Override
+	public Items getContents(String i_name) {
+		// 상품 정보 가져오기
+		return getSqlSession().selectOne("ItemsInterface.getContents", i_name);
+	}
+	@Override
 	public int getPageCount() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-	@Override
-	public Items getContents(int num) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	@Override
 	public int delItems(int num) {
