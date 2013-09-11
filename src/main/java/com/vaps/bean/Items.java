@@ -6,7 +6,7 @@ public class Items {
 	private String i_name; //상품이름(i_name)
 	private String i_category; //범주(i_category)
 	private int i_price; //가격(i_price)
-	private byte[] i_pic;//이미지파일
+	private String i_pic;//이미지파일
 	private String i_description; //상품설명
 	private String is_name; //재고상품(is_name)
 	private int is_count; //재고상품수량(is_count)
@@ -28,10 +28,10 @@ public class Items {
 	public void setI_price(int i_price) {
 		this.i_price = i_price;
 	}
-	public byte[] getI_pic() {
+	public String getI_pic() {
 		return i_pic;
 	}
-	public void setI_pic(byte[] i_pic) {
+	public void setI_pic(String i_pic) {
 		this.i_pic = i_pic;
 	}
 	public String getI_description() {
