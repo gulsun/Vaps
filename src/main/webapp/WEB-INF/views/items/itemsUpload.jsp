@@ -50,7 +50,7 @@
 					<td><input class="button" id="fileTxt" name="is_count"/></td>
 				</tr>
 				<tr>
-					<td>내용:</td>
+					<td>설명</td>
 					<td><textarea cols="67" rows="10"  name="i_description" class="inArea"></textarea></td>
 				</tr>
 				<tr>
