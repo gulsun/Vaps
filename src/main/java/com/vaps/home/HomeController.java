@@ -191,7 +191,7 @@ public class HomeController {
 			Items items = new Items();
 			
 			// fileUpload setting
-			String uploadPath = req.getRealPath("upload"); // 여기 위치가 궁금하다. webapp/upload가 맞는가?
+			String uploadPath = req.getRealPath("/upload"); // 여기 위치가 궁금하다. webapp/upload가 맞는가?
 			int fileSize = 10*1024*1024; // 10Mbyte
 			
 			if (session != null && session.getAttribute("id") != "") {
@@ -207,9 +207,22 @@ public class HomeController {
 				String fileName=multi.getFilesystemName(file);
 				String fileOriginalName=multi.getOriginalFileName(file);
 				
-				System.out.println(fileName);
-				System.out.println(fileOriginalName);
-				
+				System.out.println(fileName); //서버에 저장되는 이름
+				//System.out.println(fileOriginalName); // 업로드될 파일 이름
+/* [ 계획 ]
+	학원에서 이미지를 준비하고
+	DB에 fileName을 저장하고 이미지 불러올때 sql로
+	불러오기를 한다.
+	그러면 item table에는 변경이 필요하다
+	서버에 업로드되는 파일을 저장하고
+	상품을 상세히 설명하는 clob이 있어야 한다.	
+	
+	insert all 문장으로 2개의 테이블에 동시에 입력한다.
+	SQL> insert all
+  2     into emp2(empno, ename) values (empno, ename)
+  3     into emp3(empno, job) values (empno, job)
+	
+*/
 				items.setI_name(multi.getParameter("i_name"));
 				items.setI_category(multi.getParameter("i_category"));
 				items.setI_price(Integer.parseInt(multi.getParameter("i_price")));
