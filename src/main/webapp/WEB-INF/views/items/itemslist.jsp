@@ -17,30 +17,17 @@
 	<div style="padding: 1px 20px 30px 60px;">
 		<table id="two_table">
 			<tr bgcolor="cyan" align="center" height="35">
-				<td width="70">번호</td>
-				<td width="400">제목</td>
-				<td width="100">작성자</td>
-				<td width="150">작성일</td>
-				<td width="100">조회수</td>
+				<td width="100">카테고리</td>
+				<td width="200">상품이름</td>
+				<td width="150">가격</td>
 			</tr>
-			<c:forEach var="blist" items="${blist}">
+			<c:forEach var="ilist" items="${ilist}">
 				<tr height="25">
-					<td width="70" align="center">${blist.b_num}</td>
-					<td width="400"><a href="contents?idx=${blist.b_num}"> ${blist.b_sub} </a></td>
-					<td width="100" align="center">${blist.b_id}</td>
-					<td width="150" align="center">${blist.b_date}</td>
-					<td width="100" align="center">${blist.b_readcount}</td>
+					<td width="100" align="center">${ilist.i_category}</td>
+					<td width="400"><a href="/itemsContentsForm?str=${ilist.i_name}"> ${ilist.i_name} </a></td>
+					<td width="150" align="center">${ilist.i_price}</td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td colspan=4>
-					<center>${paging }<p>
-					</center>
-				</td>
-				<td>
-					<a href="/boardWriteForm" class="button">글쓰기</a>
-				</td>
-			</tr>
 		</table>
 	</div>
 </body>

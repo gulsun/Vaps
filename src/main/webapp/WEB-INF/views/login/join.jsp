@@ -10,6 +10,7 @@
 <link rel="styleSheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/bt.css" />
 <script>
+
 	function formCheck() {
 		var length = document.forms[0].length - 1;
 
@@ -23,6 +24,19 @@
 			}
 		}
 	}
+		function openConfirmId(joinFrm){			
+			var id=joinFrm.id.value;
+			var url="./MemberIDCheckAction?id="+joinFrm.id.value;
+			
+			if(id.length == 0){
+				alert("아이디를 입력하세요.");
+				joinFrm.id.focus();
+				return false;
+			}
+			 open(url, "confirm", "width=400,height=200,location=no" );
+		
+		}  
+		
 </script>
 </head>
 <body>
@@ -37,6 +51,10 @@
 				<tr>
 					<td>아이디:</td>
 					<td><input class="intxt" type="text" name="id" /></td>
+					<td>
+					<input type="button" name="confirm_id" value="아이디 확인" 
+								onclick="openConfirmId(this.form)" class="buttonCh"/>
+					</td>
 				</tr>
 				<tr>
 					<td>닉네임:</td>
@@ -55,12 +73,17 @@
 					<td><input class="intxt" type="text" name="addr" /></td>
 				</tr>
 				<tr>
-					<td colspan=2><input class="button" type="submit" value="회원가입" />
-						<a href="javascript:location.href='/'" class="button">되돌아가기</a></td>
+					<td colspan=2 align="right">
+						<input class="button" type="submit" value="회원가입" />
+						<a href="javascript:location.href='/'" class="button">되돌아가기</a>
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+
+
+
 
 </body>
 </html>

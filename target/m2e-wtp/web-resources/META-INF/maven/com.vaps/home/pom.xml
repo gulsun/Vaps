@@ -129,6 +129,13 @@
 			<version>1.8</version>
 		</dependency>
 		
+		<!-- cos.jar -->
+		<dependency>
+		    <groupId>servlets.com</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>05Nov2002</version>
+		</dependency>
+		
 		<!-- myBatis 추가한 것 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
