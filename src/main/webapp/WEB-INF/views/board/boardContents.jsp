@@ -37,7 +37,14 @@
 			<td colspan="5">${blist.b_contents}</td>
 		</tr>
 		<tr>
-			<td colspan="6"><a href="/board" class="button">목록</a>
+			<td colspan="6">
+			<a href="/board" class="button">목록</a>
+			<%--
+			<a href="/boardModiContentForm?idx=${blist.b_num}&con=${blist.b_contents}" class="button">수정</a>
+			 --%>
+			<a href="/boardModiContentForm?idx=${blist.b_num}" class="button">수정</a>
+			<a href="/boardDelContent?id=${blist.b_id}" class="button">삭제</a>
+			</td>
 		</tr>
 	</table>
 	<br>

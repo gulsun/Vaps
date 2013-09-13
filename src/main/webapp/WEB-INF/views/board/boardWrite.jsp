@@ -17,41 +17,33 @@
 			if (document.forms[0][i].value == null
 					|| document.forms[0][i].value == "") {
 
-				alert(document.forms[0][i].name + "(을/를) 입력하세요.");
+				alert(document.forms[0][i].name + "을/를 입력하세요.");
 				document.forms[0][i].focus();
 				return false;
 			}
 		}
-		
+	}
 </script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/top/title.jsp"%>
 	<%@include file="/WEB-INF/views/top/menu.jsp"%>
 		<br/>
-	<%-- 
-	DIV 영역 안쪽 여백 설정 
-	http://xxwony.egloos.com/55671
-	-padding [패딩] : 여백의 순서는 윗쪽, 오른쪽, 아랫쪽, 왼쪽입니다. 
-	각각의 여백을 지정하지 않고, 하나만 쓰면 사방에 동일한 여백이 적용됩니다.
- --%>
 	<div style="padding: 1px 20px 30px 60px;">
-		<h1>Login</h1>
-		<form action="access" name="LogFrm" method="post"
+		<form action="/boardWrite" name="writeFrm" method="post"
 			onsubmit="return formCheck();">
 			<table>
 				<tr>
-					<td>아이디:</td>
-					<td><input class="intxt" type="text" name="id" /></td>
+					<td>제목:</td>
+					<td><input class="inSub" type="text" name="sub"/></td>
 				</tr>
 				<tr>
-					<td>비밀번호:</td>
-					<td><input class="intxt" type="password" name="pwd" /></td>
+					<td>내용:</td>
+					<td><textarea cols="67" rows="10"  name="contents" class="inArea"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan=2><input class="button" type="submit" value="로그인">
-						<a href="javascript:location.href='/join'" class="button">회원가입</a>
-					</td>
+					<td colspan=2 align="right"><input class="button" type="submit" value="등록" />
+					<a href="/board" class="button">취소</a></td>
 				</tr>
 			</table>
 		</form>
